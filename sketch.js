@@ -1,31 +1,53 @@
-// Click and Drag an object
+let candles = [];
+let img;
+let dragging = false; // Global flag to track if any object is being dragged
 
-let shape1;
-let shape2;
+function preload() {
+    // Load your image here
+    img = loadImage('https://i.imgur.com/0L7xU5S.png');
+}
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    shape1 = new Draggable(100, 100, 50, 50);
-    shape2 = new Draggable(150, 100, 50, 50);
+    // Create multiple Candle objects
+    for (let i = 0; i < 10; i++) {
+        let x = random(width - 50);
+        let y = random(height - 50);
+        candles.push(new Candle(x, y, 50, 50, img));
+    }
 }
 
 function draw() {
     background(255);
-    shape1.over();
-    shape1.update();
-    shape1.show();
-    shape2.over();
-    shape2.update();
-    shape2.show();
-
+    // Update and display all Candle objects
+    for (let candle of candles) {
+        candle.over();
+        candle.update();
+        candle.show();
+    }
 }
 
 function mousePressed() {
-    shape1.pressed();
-    shape2.pressed();
+    // Check all candles for mouse press in reverse order
+    for (let i = candles.length - 1; i >= 0; i--) {
+        let candle = candles[i];
+        candle.pressed();
+        if (candle.dragging) {
+            // Move the clicked candle to the end of the array to ensure it is drawn on top
+            candles.push(candles.splice(i, 1)[0]);
+            break;  // Stop checking once the topmost candle is found
+        }
+    }
 }
 
 function mouseReleased() {
-    shape1.released();
-    shape2.released();
+    // Release all candles
+    for (let candle of candles) {
+        candle.released();
+    }
+    dragging = false; // Reset the dragging flag when the mouse is released
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
 }
