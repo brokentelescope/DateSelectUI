@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+#game-container {
+    text-align: center;
+}
+
+#cake-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+#cake {
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    cursor: grab;
+}
+
+#date-display {
+    margin-top: 20px;
+    font-size: 18px;
+}
