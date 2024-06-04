@@ -11,15 +11,19 @@ function preload() {
     candle_imgs.push(loadImage('https://i.imgur.com/mmvklo0.png'));
     // blue candle
     candle_imgs.push(loadImage('https://i.imgur.com/rWiDYd4.png'));
+    // cake side view
+    candle_imgs.push(loadImage('https://i.imgur.com/nNur0sG.png'));
+    // cake top view
+    candle_imgs.push(loadImage('https://i.imgur.com/PQaxfSL.png'));
 }
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     // Assuming width and height are defined
     const centerXStart = windowWidth * 0.3 - candle_width;
-    const centerXEnd = windowWidth * 0.8;
+    const centerXEnd = windowWidth * 0.7;
     const centerYStart = windowHeight * 0.3 - candle_height;
-    const centerYEnd = windowHeight * 0.8;
+    const centerYEnd = windowHeight * 0.7;
 
     for (let i = 1; i <= 100; i++) {
         while (true) {
@@ -38,9 +42,9 @@ function setup() {
 function draw() {
     background(255);
     const centerXStart = windowWidth * 0.3;
-    const centerXEnd = windowWidth * 0.8;
+    const centerXEnd = windowWidth * 0.7;
     const centerYStart = windowHeight * 0.3;
-    const centerYEnd = windowHeight * 0.8;
+    const centerYEnd = windowHeight * 0.7;
     fill(255, 0, 0, 50); // Red color with transparency
     noStroke();
     rect(centerXStart, centerYStart, centerXEnd - centerXStart, centerYEnd - centerYStart);
