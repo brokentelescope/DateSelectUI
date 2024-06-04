@@ -1,19 +1,25 @@
 let candles = [];
-let img;
+let candle_imgs = [];
 let dragging = false; // Global flag to track if any object is being dragged
 
 function preload() {
-    // Load your image here
-    img = loadImage('https://i.imgur.com/0L7xU5S.png');
+    // purple candle
+    candle_imgs.push(loadImage('https://i.imgur.com/1IyBHyX.png'));
+    // green candle
+    candle_imgs.push(loadImage('https://i.imgur.com/mmvklo0.png'));
+    // blue candle
+    candle_imgs.push(loadImage('https://i.imgur.com/rWiDYd4.png'));
 }
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     // Create multiple Candle objects
-    for (let i = 0; i < 10; i++) {
+    for (let i = 1; i <= 100; i++) {
         let x = random(width - 50);
         let y = random(height - 50);
-        candles.push(new Candle(x, y, 50, 50, img));
+        // get random candle image
+        let img = candle_imgs[Math.floor(Math.random() * candle_imgs.length)];
+        candles.push(new Candle(x, y, 30, 200, img));
     }
 }
 
