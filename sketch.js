@@ -1,6 +1,8 @@
 let candles = [];
 let candle_imgs = [];
 let dragging = false; // Global flag to track if any object is being dragged
+const candle_width = 30;
+const candle_height = 200;
 
 function preload() {
     // purple candle
@@ -13,18 +15,36 @@ function preload() {
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    // Create multiple Candle objects
+    // Assuming width and height are defined
+    const centerXStart = windowWidth * 0.3 - candle_width;
+    const centerXEnd = windowWidth * 0.8;
+    const centerYStart = windowHeight * 0.3 - candle_height;
+    const centerYEnd = windowHeight * 0.8;
+
     for (let i = 1; i <= 100; i++) {
-        let x = random(width - 50);
-        let y = random(height - 50);
-        // get random candle image
-        let img = candle_imgs[Math.floor(Math.random() * candle_imgs.length)];
-        candles.push(new Candle(x, y, 30, 200, img));
+        while (true) {
+            let x = random(width - 50), y = random(height - 50);
+            if (!(x < centerXEnd && x > centerXStart && y < centerYEnd && y > centerYStart)) {
+                let img = candle_imgs[Math.floor(Math.random() * candle_imgs.length)];
+                candles.push(new Candle(x, y, candle_width, candle_height, img));
+                break;
+            }
+        }
     }
+    rect(centerXStart, centerYStart, centerXEnd - centerXStart, centerYEnd - centerYStart);
+
 }
 
 function draw() {
     background(255);
+    const centerXStart = windowWidth * 0.3;
+    const centerXEnd = windowWidth * 0.8;
+    const centerYStart = windowHeight * 0.3;
+    const centerYEnd = windowHeight * 0.8;
+    fill(255, 0, 0, 50); // Red color with transparency
+    noStroke();
+    rect(centerXStart, centerYStart, centerXEnd - centerXStart, centerYEnd - centerYStart);
+
     // Update and display all Candle objects
     for (let candle of candles) {
         candle.over();
