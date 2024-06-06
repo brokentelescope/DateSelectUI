@@ -10,8 +10,8 @@ class Candle {
       this.offsetX = 0;
       this.offsetY = 0;
       this.img = img;
-      this.speedX = random(-3, 3);
-      this.speedY = random(-3, 3);
+      this.speedX = random(-2, 2);
+      this.speedY = random(-2, 2);
   }
   
   over() {  

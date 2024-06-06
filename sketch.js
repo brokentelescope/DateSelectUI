@@ -6,7 +6,7 @@ const candle_width = 20;
 const candle_height = 133;
 const numCandles = 100;
 let candleCount = 0;
-const movingCandlesCount = 80;
+const movingCandlesCount = 99;
 
 
 function preload() {
