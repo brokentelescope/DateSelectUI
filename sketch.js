@@ -2,10 +2,12 @@ let candles = [];
 let candle_imgs = [];
 let dragging = false; // Global flag to track if any object is being dragged
 let cake_top, cake_side;
-const candle_width = 30;
-const candle_height = 200;
+const candle_width = 20;
+const candle_height = 133;
 const numCandles = 100;
 let candleCount = 0;
+const movingCandlesCount = 10;
+
 
 function preload() {
     // purple candle
@@ -24,34 +26,37 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
 
 
-    const centerXStart = windowWidth * 0.3 - candle_width;
-    const centerXEnd = windowWidth * 0.7;
+    const centerXStart = windowWidth * 0.35 - candle_width;
+    const centerXEnd = windowWidth * 0.66;
     const centerYStart = windowHeight * 0.3 - candle_height;
     const centerYEnd = windowHeight * 0.7;
 
     for (let i = 1; i <= numCandles; i++) {
         while (true) {
             let x = random(width - 50), y = random(height - 50);
-            if (!(x < centerXEnd && x > centerXStart && y < centerYEnd && y > centerYStart)) {
+            if (!(x < centerXEnd && x > centerXStart)) {
                 let img = candle_imgs[Math.floor(Math.random() * candle_imgs.length)];
                 candles.push(new Candle(x, y, candle_width, candle_height, img));
                 break;
             }
         }
     }
-    rect(centerXStart, centerYStart, centerXEnd - centerXStart, centerYEnd - centerYStart);
+    //rect(centerXStart, centerYStart, centerXEnd - centerXStart, centerYEnd - centerYStart);
 
 }
 
 function draw() {
     background(255);
-    const centerXStart = windowWidth * 0.3;
-    const centerXEnd = windowWidth * 0.7;
-    const centerYStart = windowHeight * 0.3;
-    const centerYEnd = windowHeight * 0.7;
+    const centerXStart = windowWidth * 0.375;
+    const centerXEnd = windowWidth * 0.63;
+    const centerYStart = windowHeight * 0.1;
+    const centerYEnd = windowHeight * 0.27;
     fill(255, 0, 0, 50); // Red color with transparency
     noStroke();
-    rect(centerXStart, centerYStart, centerXEnd - centerXStart, centerYEnd - centerYStart);
+    let cakeWidth = 500; 
+    let cakeHeight = 500; 
+    //rect(centerXStart, centerYStart, centerXEnd - centerXStart, centerYEnd - centerYStart);
+    image(cake_side, windowWidth / 3, windowHeight / 7, cakeWidth, cakeHeight);
 
     // Update and display all Candle objects
     for (let candle of candles) {
