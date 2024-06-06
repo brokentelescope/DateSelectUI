@@ -1,8 +1,10 @@
 let candles = [];
 let candle_imgs = [];
 let dragging = false; // Global flag to track if any object is being dragged
+let cake_top, cake_side;
 const candle_width = 30;
 const candle_height = 200;
+let candleCount = 0;
 
 function preload() {
     // purple candle
@@ -12,9 +14,9 @@ function preload() {
     // blue candle
     candle_imgs.push(loadImage('https://i.imgur.com/rWiDYd4.png'));
     // cake side view
-    candle_imgs.push(loadImage('https://i.imgur.com/nNur0sG.png'));
+    cake_side = loadImage('https://i.imgur.com/nNur0sG.png');
     // cake top view
-    candle_imgs.push(loadImage('https://i.imgur.com/PQaxfSL.png'));
+    cake_top = loadImage('https://i.imgur.com/PQaxfSL.png');
 }
 
 function setup() {
@@ -25,7 +27,7 @@ function setup() {
     const centerYStart = windowHeight * 0.3 - candle_height;
     const centerYEnd = windowHeight * 0.7;
 
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 1; i++) {
         while (true) {
             let x = random(width - 50), y = random(height - 50);
             if (!(x < centerXEnd && x > centerXStart && y < centerYEnd && y > centerYStart)) {
@@ -55,6 +57,12 @@ function draw() {
         candle.update();
         candle.show();
     }
+    let candleCount = countCandlesInRectangle(centerXStart, centerYStart, centerXEnd, centerYEnd);
+    // Display the candle count
+    fill(0);
+    textSize(32);
+    text('Candles in Rectangle: ' + candleCount, 10, 30);
+
 }
 
 function mousePressed() {
@@ -68,6 +76,17 @@ function mousePressed() {
             break;  // Stop checking once the topmost candle is found
         }
     }
+}
+
+function countCandlesInRectangle(x1, y1, x2, y2) {
+    let count = 0;
+    for (let candle of candles) {
+        console.log(candle.x, candle.y);
+        if (candle.x >= x1 && candle.x + candle.width <= x2 && candle.y >= y1 && candle.y + candle.height <= y2) {
+            count++;
+        }
+    }
+    return count;
 }
 
 function mouseReleased() {
