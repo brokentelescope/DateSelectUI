@@ -27,7 +27,7 @@ function draw() {
     translate(centerX, centerY);
     rotate(radians(currentAngle));
     imageMode(CENTER);
-    image(cake, 0, 0, 250, 250);
+    image(cake, 0, 0, 300, 300);
 }
 
 function mousePressed() {
