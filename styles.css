@@ -15,6 +15,7 @@ body {
 #date-display {
     margin-top: 20px;
     font-size: 18px;
+    user-select: none; /* Prevent text selection */
 }
 
 #canvas-container {

@@ -66,7 +66,7 @@ function updateDateDisplay(angle) {
     const birthDate = new Date(currentDate);
     birthDate.setFullYear(birthDate.getFullYear() - age);
     birthDate.setDate(birthDate.getDate() - daysSpun);
-    dateDisplay.innerHTML = "Your birth date is: " + birthDate.toDateString();
+    dateDisplay.textContent = "Your birth date is: " + birthDate.toDateString();
   
 }
 
