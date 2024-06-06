@@ -4,7 +4,6 @@ let dragging = false; // Global flag to track if any object is being dragged
 let cake_top, cake_side;
 const candle_width = 30;
 const candle_height = 200;
-const numCandles = 100;
 let candleCount = 0;
 
 function preload() {
@@ -27,7 +26,8 @@ function setup() {
     const centerXEnd = windowWidth * 0.7;
     const centerYStart = windowHeight * 0.3 - candle_height;
     const centerYEnd = windowHeight * 0.7;
-    for (let i = 1; i <= numCandles; i++) {
+
+    for (let i = 1; i <= 100; i++) {
         while (true) {
             let x = random(width - 50), y = random(height - 50);
             if (!(x < centerXEnd && x > centerXStart && y < centerYEnd && y > centerYStart)) {
@@ -38,7 +38,7 @@ function setup() {
         }
     }
     rect(centerXStart, centerYStart, centerXEnd - centerXStart, centerYEnd - centerYStart);
-
+    
 }
 
 function draw() {
@@ -51,17 +51,22 @@ function draw() {
     noStroke();
     rect(centerXStart, centerYStart, centerXEnd - centerXStart, centerYEnd - centerYStart);
 
+
+
     // Update and display all Candle objects
     for (let candle of candles) {
         candle.over();
         candle.update();
         candle.show();
     }
-    let candleCount = countCandlesInRectangle(centerXStart, centerXEnd, centerYStart, centerYEnd);
+    let candleCount = countCandlesInRectangle(centerXStart, centerYStart, centerXEnd, centerYEnd);
     // Display the candle count
     fill(0);
     textSize(32);
-    text('Your age: ' + candleCount, 10, 30);
+    text('Candles in Rectangle: ' + candleCount, 10, 30);
+    console.log(1)
+
+    image(cake_side, windowWidth / 4, 0);
 
 }
 
@@ -78,10 +83,11 @@ function mousePressed() {
     }
 }
 
-function countCandlesInRectangle(x1, x2, y1, y2) {
+function countCandlesInRectangle(x1, y1, x2, y2) {
     let count = 0;
     for (let candle of candles) {
-        if (candle.x >= x1 && candle.x <= x2 && candle.y >= y1 && candle.y <= y2) {
+        console.log(candle.x, candle.y);
+        if (candle.x >= x1 && candle.x + candle.width <= x2 && candle.y >= y1 && candle.y + candle.height <= y2) {
             count++;
         }
     }
