@@ -27,7 +27,7 @@ function draw() {
     translate(centerX, centerY);
     rotate(radians(currentAngle));
     imageMode(CENTER);
-    image(cake, 0, 0, 200, 200);
+    image(cake, 0, 0, 250, 250);
 }
 
 function mousePressed() {
@@ -57,12 +57,16 @@ function mouseReleased() {
     isDragging = false;
 }
 
-function updateDateDisplay(angle, age) {
+function updateDateDisplay(angle) {
+    let age = 0;
+    const urlParams = new URLSearchParams(window.location.search);
+    age = urlParams.get('candleCount');
     // Update the date display based on the current angle and age
     const daysSpun = Math.round(angle * daysPerDegree);
     const birthDate = new Date(currentDate);
     birthDate.setFullYear(birthDate.getFullYear() - age);
     birthDate.setDate(birthDate.getDate() - daysSpun);
-    dateDisplay.textContent = "Your birth date is approximately: " + birthDate.toDateString();
+    dateDisplay.innerHTML = "Your birth date is: " + birthDate.toDateString();
+  
 }
 
