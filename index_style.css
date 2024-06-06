@@ -1,0 +1,11 @@
+html, body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Add space between items */
+}

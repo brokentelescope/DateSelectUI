@@ -21,13 +21,14 @@ function preload() {
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    // Assuming width and height are defined
+
+
     const centerXStart = windowWidth * 0.3 - candle_width;
     const centerXEnd = windowWidth * 0.7;
     const centerYStart = windowHeight * 0.3 - candle_height;
     const centerYEnd = windowHeight * 0.7;
 
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= numCandles; i++) {
         while (true) {
             let x = random(width - 50), y = random(height - 50);
             if (!(x < centerXEnd && x > centerXStart && y < centerYEnd && y > centerYStart)) {
@@ -59,13 +60,8 @@ function draw() {
         candle.update();
         candle.show();
     }
-    let candleCount = countCandlesInRectangle(centerXStart, centerYStart, centerXEnd, centerYEnd);
-    // Display the candle count
-    fill(0);
-    textSize(32);
-    image(cake_side, windowWidth / 4, 0);
-    text('Candles in Rectangle: ' + candleCount, 10, 30);
-
+    let candleCount = countCandlesInRectangle(centerXStart, centerXEnd, centerYStart, centerYEnd);
+    document.getElementById('ageDisplay').innerHTML = 'Your age: ' + candleCount;
 }
 
 function mousePressed() {
