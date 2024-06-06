@@ -6,7 +6,7 @@ const candle_width = 20;
 const candle_height = 133;
 const numCandles = 100;
 let candleCount = 0;
-const movingCandlesCount = 10;
+const movingCandlesCount = 80;
 
 
 function preload() {
@@ -28,8 +28,6 @@ function setup() {
 
     const centerXStart = windowWidth * 0.35 - candle_width;
     const centerXEnd = windowWidth * 0.66;
-    const centerYStart = windowHeight * 0.3 - candle_height;
-    const centerYEnd = windowHeight * 0.7;
 
     for (let i = 1; i <= numCandles; i++) {
         while (true) {
@@ -64,6 +62,17 @@ function draw() {
         candle.update();
         candle.show();
     }
+
+    for (let i = 0; i < candles.length; i++) {
+        if (i < movingCandlesCount) {
+            candles[i].moveRandomly();
+        }
+        candles[i].over();
+        candles[i].update();
+        candles[i].show();
+    }
+
+    
     let candleCount = countCandlesInRectangle(centerXStart, centerXEnd, centerYStart, centerYEnd);
     document.getElementById('ageDisplay').innerHTML = 'Your age: ' + candleCount;
 }
