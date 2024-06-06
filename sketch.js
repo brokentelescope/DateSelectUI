@@ -102,3 +102,10 @@ function mouseReleased() {
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('ageForm').addEventListener('submit', function(event) {
+        const candleCount = document.getElementById('ageDisplay').innerText.split(': ')[1];
+        document.getElementById('candleCountInput').value = candleCount;
+    });
+});

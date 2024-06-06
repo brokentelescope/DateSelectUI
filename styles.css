@@ -5,27 +5,19 @@ body {
     height: 100vh;
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
+    flex-direction: column;
 }
 
 #game-container {
     text-align: center;
 }
 
-#cake-container {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-}
-
-#cake {
-    width: 100%;
-    height: 100%;
-    transform-origin: center;
-    cursor: grab;
-}
-
 #date-display {
     margin-top: 20px;
     font-size: 18px;
+    user-select: none; /* Prevent text selection */
+}
+
+#canvas-container {
+    margin-top: 20px;
 }
