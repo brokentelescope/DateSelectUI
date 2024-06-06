@@ -4,6 +4,7 @@ let dragging = false; // Global flag to track if any object is being dragged
 let cake_top, cake_side;
 const candle_width = 30;
 const candle_height = 200;
+const numCandles = 100;
 let candleCount = 0;
 
 function preload() {
@@ -39,7 +40,7 @@ function setup() {
         }
     }
     rect(centerXStart, centerYStart, centerXEnd - centerXStart, centerYEnd - centerYStart);
-    
+
 }
 
 function draw() {
@@ -51,8 +52,6 @@ function draw() {
     fill(255, 0, 0, 50); // Red color with transparency
     noStroke();
     rect(centerXStart, centerYStart, centerXEnd - centerXStart, centerYEnd - centerYStart);
-
-
 
     // Update and display all Candle objects
     for (let candle of candles) {
@@ -77,11 +76,10 @@ function mousePressed() {
     }
 }
 
-function countCandlesInRectangle(x1, y1, x2, y2) {
+function countCandlesInRectangle(x1, x2, y1, y2) {
     let count = 0;
     for (let candle of candles) {
-        console.log(candle.x, candle.y);
-        if (candle.x >= x1 && candle.x + candle.width <= x2 && candle.y >= y1 && candle.y + candle.height <= y2) {
+        if (candle.x >= x1 && candle.x <= x2 && candle.y >= y1 && candle.y <= y2) {
             count++;
         }
     }
