@@ -63,10 +63,8 @@ function draw() {
     // Display the candle count
     fill(0);
     textSize(32);
-    text('Candles in Rectangle: ' + candleCount, 10, 30);
-    console.log(1)
-
     image(cake_side, windowWidth / 4, 0);
+    text('Candles in Rectangle: ' + candleCount, 10, 30);
 
 }
 
