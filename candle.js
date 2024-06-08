@@ -2,7 +2,7 @@ class Candle {
   constructor(x, y, w, h, img) {
       this.dragging = false; // Is the object being dragged?
       this.rollover = false; // Is the mouse over the ellipse?
-
+      this.dragged = false; // if its been dragged
       this.x = x;
       this.y = y;
       this.w = w;
@@ -48,6 +48,7 @@ class Candle {
       // Did I click on the rectangle?
       if (mouseX > this.x && mouseX < this.x + this.w && mouseY > this.y && mouseY < this.y + this.h) {
           this.dragging = true;
+          this.dragged = true;
           // If so, keep track of relative location of click to corner of rectangle
           this.offsetX = this.x - mouseX;
           this.offsetY = this.y - mouseY;
@@ -60,16 +61,19 @@ class Candle {
   }
 
   moveRandomly() {
-    this.x += this.speedX;
-    this.y += this.speedY;
+    if (this.dragged === false) {
+        this.x += this.speedX;
+        this.y += this.speedY;
 
-    // Change direction when hitting the edge of the canvas
-    if (this.x <= 0 || this.x + this.w >= width) {
-        this.speedX *= -1;
-    }
+        // Change direction when hitting the edge of the canvas
+        if (this.x <= 0 || this.x + this.w >= width) {
+            this.speedX *= -1;
+        }
 
-    if (this.y <= 0 || this.y + this.h >= height) {
-        this.speedY *= -1;
+        if (this.y <= 0 || this.y + this.h >= height) {
+            this.speedY *= -1;
+        }
     }
+    
 }
 }
