@@ -87,6 +87,7 @@ function mousePressed() {
             candles.push(candles.splice(i, 1)[0]);
             break;  // Stop checking once the topmost candle is found
         }
+        
     }
 }
 
